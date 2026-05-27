@@ -6,11 +6,12 @@ const TARGET = 'https://aml-cdd-api-copy-copy-copy-copy-copy-copy-production.up.
 const API_KEY = process.env.API_KEY;
 
 app.use((req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://screen989.netlify.app');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
   res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE');
-  if (req.method === 'OPTIONS') return res.sendStatus(200);
-
+  if (req.method === 'OPTIONS') {
+  return res.status(200).end();
+  }
   fetch(`${TARGET}${req.url}`, {
     method: req.method,
     headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
